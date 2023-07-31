@@ -1,0 +1,56 @@
+
+--1)how many total passengers ?
+select sum(num_passengers) from [dbo].[Passanger_booking_data]
+
+--ANSWER: about 79566 customers
+
+--2)what are the different types of sale channels?
+
+select distinct sales_channel from [dbo].[Passanger_booking_data]
+
+--ANSWER: Interent and Mobile
+
+-- 3) what is the most common trip type?
+
+SELECT trip_type, SUM(num_passengers) AS total_passengers
+FROM [dbo].[Passanger_booking_data]
+GROUP BY trip_type
+ORDER BY total_passengers DESC;
+
+--ANSWER: Roundtrip is the most common type of trip with 78775 customers which makes 99% of the total customers.
+
+--4)what is the average length of stay of all customers?
+Select avg(length_of_stay) as average_length_of_stay
+from [dbo].[Passanger_booking_data]
+
+--ANSWER: 23 days is the average length of stay
+
+--5)what is the average flight duration?
+Select avg(flight_duration) as average_flight_duation
+from [dbo].[Passanger_booking_data]
+
+--ANSWER: The average flight duration is 7.28 hours.
+
+--6)What is the most popular booking origin?
+select booking_origin, sum(num_passengers) as total_passengers
+from [dbo].[Passanger_booking_data]
+group by booking_origin
+order by total_passengers DESC;
+
+--ANSWER: Australia is the most popular booking origin.
+
+--7) What percentage of all customers wanted in flight meals?
+
+select (SUM(CASE WHEN wants_in_flight_meals = 1 THEN 1 ELSE 0 END) * 100.0) / COUNT(*) AS percentage_yes
+FROM [dbo].[Passanger_booking_data];
+
+--ANSWER: 42.71% of customers wanted in flight meals.
+
+--8) what is the most common flight day?
+
+select flight_day, sum(num_passengers) as total_passengers
+from [dbo].[Passanger_booking_data]
+group by flight_day
+order by total_passengers DESC;
+
+--ANSWER: Monday is the most common flight day with 12,933 passengers boarding on that day of the week.
