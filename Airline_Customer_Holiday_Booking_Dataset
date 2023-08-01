@@ -1,5 +1,6 @@
+Dataset Source: https://www.kaggle.com/datasets/manishkumar7432698/airline-passangers-booking-data
 
---1)how many total passengers ?
+--1)how many total passengers?
 select sum(num_passengers) from [dbo].[Passanger_booking_data]
 
 --ANSWER: about 79566 customers
@@ -8,7 +9,7 @@ select sum(num_passengers) from [dbo].[Passanger_booking_data]
 
 select distinct sales_channel from [dbo].[Passanger_booking_data]
 
---ANSWER: Interent and Mobile
+--ANSWER: Internet and Mobile
 
 -- 3) what is the most common trip type?
 
@@ -39,12 +40,12 @@ order by total_passengers DESC;
 
 --ANSWER: Australia is the most popular booking origin.
 
---7) What percentage of all customers wanted in flight meals?
+--7) What percentage of all customers wanted in-flight meals?
 
 select (SUM(CASE WHEN wants_in_flight_meals = 1 THEN 1 ELSE 0 END) * 100.0) / COUNT(*) AS percentage_yes
 FROM [dbo].[Passanger_booking_data];
 
---ANSWER: 42.71% of customers wanted in flight meals.
+--ANSWER: 42.71% of customers wanted in-flight meals.
 
 --8) what is the most common flight day?
 
